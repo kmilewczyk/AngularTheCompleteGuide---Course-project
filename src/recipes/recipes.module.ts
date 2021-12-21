@@ -7,6 +7,8 @@ import { RecipeListComponent } from './recipe-list/recipe-list.component';
 import { RecipeItemComponent } from './recipe-item/recipe-item.component';
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { SharedModule } from 'src/shared/shared.module';
+import { NoRecipeSelectedComponent } from './no-recipe-selected/no-recipe-selected.component';
+import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
 
 
 @NgModule({
@@ -14,7 +16,9 @@ import { SharedModule } from 'src/shared/shared.module';
     RecipeBookComponent,
     RecipeListComponent,
     RecipeItemComponent,
-    RecipeDetailComponent
+    RecipeDetailComponent,
+    NoRecipeSelectedComponent,
+    RecipeEditComponent
   ],
   imports: [
     CommonModule,

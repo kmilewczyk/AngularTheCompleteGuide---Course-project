@@ -15,9 +15,9 @@
                 <button class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" type="button">Manage
                     Recipe</button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">To Shopping List</a></li>
-                    <li><a class="dropdown-item" href="#">Edit Recipe</a></li>
-                    <li><a class="dropdown-item" href="#">Delete Recipe</a></li>
+                    <li><a style="cursor: pointer;" class="dropdown-item"(click)="sendIngredientsToShoppingList(recipe.ingredients)">To Shopping List</a></li>
+                    <li><a style="cursor: pointer;" class="dropdown-item" (click)="onEditRecipe()">Edit Recipe</a></li>
+                    <li><a style="cursor: pointer;" class="dropdown-item">Delete Recipe</a></li>
                 </ul>
             </div>
         </div>
@@ -29,12 +29,18 @@
     </div>
     <div class="row">
         <div class="col-xs-12">
-            Ingredients
+            <ul class="list-group">
+                <li 
+                    class="list-group-item"
+                    *ngFor="let ingredient of recipe.ingredients">
+                    {{ ingredient.name }} ({{ ingredient.amount}})
+                </li>
+            </ul>
         </div>
     </div>
 </div>
 <ng-template #noItemSelected>
     <div class="row">
-        <p>Please select a recipe.</p>
+        <p>Please select a recipe. LOL</p>
     </div>
 </ng-template>
