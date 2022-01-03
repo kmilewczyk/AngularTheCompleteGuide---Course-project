@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Ingredient } from 'src/shared/models/ingredient.model';
 import { EventEmitter } from '@angular/core';
+import { Subject } from 'rxjs';
 
 export type IngredientMap = Map<string, Ingredient>;
 
@@ -16,7 +17,7 @@ export class ShoppingListService {
     ]
   );
 
-  ingredientsChanged = new EventEmitter<IngredientMap>();
+  ingredientsChanged = new Subject<IngredientMap>();
 
   constructor() { }
 
@@ -27,7 +28,7 @@ export class ShoppingListService {
   addIngredient(ingredient: Ingredient) {
     this.addIngredientToMap(ingredient);
 
-    this.ingredientsChanged.emit(this.ingredients);
+    this.ingredientsChanged.next(this.ingredients);
   }
 
   addIngredients(ingredients: Ingredient[]) {
@@ -35,7 +36,7 @@ export class ShoppingListService {
       this.addIngredientToMap(ingredient);
     }
 
-    this.ingredientsChanged.emit(this.ingredients);
+    this.ingredientsChanged.next(this.ingredients);
   }
 
   private addIngredientToMap(ingredient: Ingredient) {
