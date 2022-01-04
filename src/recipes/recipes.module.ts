@@ -9,6 +9,7 @@ import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { SharedModule } from 'src/shared/shared.module';
 import { NoRecipeSelectedComponent } from './no-recipe-selected/no-recipe-selected.component';
 import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -23,7 +24,9 @@ import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
   imports: [
     CommonModule,
     RecipeBookRoutingModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class RecipeBookModule { }

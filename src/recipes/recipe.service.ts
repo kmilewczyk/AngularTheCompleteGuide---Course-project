@@ -8,9 +8,9 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class RecipeService {
+  recipesChanged = new Subject<Recipe[]>();
   private recipes: Recipe[] = [
     new Recipe(
-      1,
       'Schabowy',
       'Domowej roboty',
       'https://cdn.pixabay.com/photo/2016/06/15/19/09/food-1459693_1280.jpg',
@@ -20,7 +20,6 @@ export class RecipeService {
       ]
     ),
     new Recipe(
-      2,
       'Burger',
       'Mamy burgery w domu.',
       'https://images.pexels.com/photos/3915915/pexels-photo-3915915.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
@@ -38,6 +37,25 @@ export class RecipeService {
   }
 
   getRecipe(id: number) {
-    return this.recipes.filter(r => r.id == id)[0];
+    return this.recipes[id];
+  }
+
+  addRecipe(recipe: Recipe) {
+    this.recipes.push(recipe);
+    this.fireRecipesChanged();
+  }
+
+  updateRecipe(index: number, newRecipe: Recipe) {
+    this.recipes[index] = newRecipe;
+    this.fireRecipesChanged();
+  }
+
+  fireRecipesChanged() {
+    this.recipesChanged.next(this.getRecipes());
+  }
+
+  deleteRecipe(index: number) {
+    this.recipes.splice(index,1);
+    this.fireRecipesChanged();
   }
 }

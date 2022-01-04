@@ -18,11 +18,16 @@ export class ShoppingListService {
   );
 
   ingredientsChanged = new Subject<IngredientMap>();
+  startedEditing = new Subject<string>();
 
   constructor() { }
 
   getIngredients() {
     return new Map(this.ingredients);
+  }
+
+  getIngredient(name: string) {
+    return this.ingredients.get(name);
   }
 
   addIngredient(ingredient: Ingredient) {
@@ -47,5 +52,15 @@ export class ShoppingListService {
     } else {
       this.ingredients.set(ingredient.name.toLowerCase(), ingredient);
     }
+  }
+
+  updateIngredient(key: string, newIngredient: Ingredient) {
+    this.ingredients.set(key, newIngredient);
+    this.ingredientsChanged.next(this.ingredients);
+  }
+
+  deleteIngredient(key: string) {
+    this.ingredients.delete(key);
+    this.ingredientsChanged.next(this.ingredients);
   }
 }

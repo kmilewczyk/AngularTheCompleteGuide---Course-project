@@ -15,9 +15,9 @@
                 <button class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" type="button">Manage
                     Recipe</button>
                 <ul class="dropdown-menu">
-                    <li><a style="cursor: pointer;" class="dropdown-item"(click)="sendIngredientsToShoppingList(recipe.ingredients)">To Shopping List</a></li>
+                    <li><a style="cursor: pointer;" class="dropdown-item" (click)="sendIngredientsToShoppingList(recipe.ingredients)">To Shopping List</a></li>
                     <li><a style="cursor: pointer;" class="dropdown-item" (click)="onEditRecipe()">Edit Recipe</a></li>
-                    <li><a style="cursor: pointer;" class="dropdown-item">Delete Recipe</a></li>
+                    <li><a style="cursor: pointer;" class="dropdown-item" (click)="onDeleteRecipe()">Delete Recipe</a></li>
                 </ul>
             </div>
         </div>
