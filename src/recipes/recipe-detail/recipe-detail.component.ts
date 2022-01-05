@@ -1,9 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Ingredient } from 'src/shared/models/ingredient.model';
 import { Recipe } from 'src/shared/models/recipe.model';
-import { ShoppingListService } from 'src/shopping-list/shopping-list.service';
+import { IngredientMap, ShoppingListService } from 'src/shopping-list/shopping-list.service';
 import { RecipeService } from '../recipe.service';
+import * as ShoppingListActions from '../../shopping-list/store/shopping-list.actions'
 
 @Component({
   selector: 'app-recipe-detail',
@@ -16,7 +18,8 @@ export class RecipeDetailComponent implements OnInit {
   constructor(private recipeService: RecipeService,
     private shoppingListService: ShoppingListService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private store: Store<{shoppingList: {ingredients: IngredientMap}}>) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -25,8 +28,11 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   sendIngredientsToShoppingList(ingredients: Ingredient[]) {
-    this.shoppingListService.addIngredients(ingredients);
-    
+    // this.shoppingListService.addIngredients(ingredients);
+    this.store.dispatch(
+      new ShoppingListActions.AddIngredients(
+        new Map(ingredients.map((ingr) => [ingr.name.toLowerCase(), ingr]))));
+
     return false;
   }
 
