@@ -4,7 +4,6 @@ import { NoRecipeSelectedComponent } from './no-recipe-selected/no-recipe-select
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
 import { RecipeBookComponent } from './recipes/recipes.component';
-import { RecipeDetailResolver } from './resolvers/recipe-detail.resolver';
 
 const routes: Routes = [
   { path: '', component: RecipeBookComponent, children: [
